@@ -1,0 +1,7 @@
+
+
+core :
+	logging system
+	verbose mode
+	channel mode?
+	better url list 

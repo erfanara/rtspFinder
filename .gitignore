@@ -1,0 +1,19 @@
+.pyenv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Project related
+reports/
+
+# Development
+.vscode/*
+venv/
+test/
+
+# Deploy
+build/
+dist/
+rtspbrute.egg-info/
