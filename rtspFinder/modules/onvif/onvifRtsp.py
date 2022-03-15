@@ -1,8 +1,12 @@
 from sys import stderr
 from requests import request
+import requests
 from requests.auth import HTTPDigestAuth
 
 import re
+
+from requests.exceptions import RequestException
+from requests.models import HTTPError
 
 from rtspFinder.modules.logs_handler import logs
 
@@ -51,7 +55,13 @@ def getRtsp(ip: str, onvif_port: int, user: str, password: str) -> list[str]:
         # Get Profiles first
         res = request('POST', f"http://{ip}:{onvif_port}/onvif/media_service", headers=header1,
                       data=GET_PROFILE.encode(), auth=HTTPDigestAuth(user, password))
-        # print(res.content.decode())
+
+        # (for debugging) print(res.content.decode())
+
+        # Check if auth was not successful
+        if res.status_code == 401 or res.status_code == 403:
+            raise HTTPError("[Errno 401] auth failed")
+
         profList = findProfileTokens(res.content.decode())
 
         # Get stream link for every profile
@@ -69,7 +79,7 @@ def getRtsp(ip: str, onvif_port: int, user: str, password: str) -> list[str]:
             logs.print_url(urls[0])
             logs.return_status(True)
 
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         logs.print_err(str(e))
         logs.return_status(False)
 
@@ -81,11 +91,3 @@ def getRtsp(ip: str, onvif_port: int, user: str, password: str) -> list[str]:
 
 if __name__ == "__main__":
     print(getRtsp("192.168.1.99", 80, "ImageProcessing1", "Veerasense123."))
-
-
-# TODO: complete the code using onvif-zeep way
-# import onvif
-
-# dev = onvif.ONVIFCamera(ip,port,user,password)
-# med=dev.create_media_service()
-# med.

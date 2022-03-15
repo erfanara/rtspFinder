@@ -37,7 +37,19 @@ async def main(
             ip, onvif_port, user, password)
 
     if not only_onvif and len(found_urls_onvif) == 0:
-        # Onvif not worked, then add the urls to the queue1
+        # Onvif not worked
+        # check for errors then terminate if needed
+        # TODO:remove these ugly codes , we need more dynamic code for error handlings
+        if not no_onvif and "[Errno 113]" in logs._LOG["onvifRtsp.py"]["errors"][0]:
+            logs.print_err("[Errno 113] No route to Host")
+            logs.print_err("Stopping Everything.")
+            return
+        if not no_onvif and "[Errno 401]" in logs._LOG["onvifRtsp.py"]["errors"][0]:
+            logs.print_err("[Errno 401] auth failed")
+            logs.print_err("Stopping Everything.")
+            return
+
+        # then add the urls to the queue1
         for path in paths:
             await queue1.put(path)
 

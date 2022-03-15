@@ -1,7 +1,7 @@
 import socket
 from enum import Enum
 from typing import List, Union
-import re
+import re
 from rtspFinder.modules.logs_handler import logs
 
 from rtspFinder.modules.rtsp.packet import describe
@@ -119,7 +119,7 @@ class RTSPClient:
             try:
                 self.socket = socket.create_connection(
                     (self.ip, self.port), self.timeout)
-            except Exception as e:
+            except OSError as e:
                 self.status = Status.from_exception(e)
                 self.last_error = e
                 logs.print_err(str(self.last_error))
@@ -172,7 +172,7 @@ class RTSPClient:
             try:
                 self.socket.sendall(self.packet.encode())
                 self.data = self.socket.recv(1024).decode()
-            except Exception as e:
+            except OSError as e:
                 self.status = Status.from_exception(e)
                 self.last_error = e
                 self.socket.close()

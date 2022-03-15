@@ -8,6 +8,8 @@ Similar tools:
 - https://github.com/Ullaakut/cameradar
 
 # How to use?
+- you need at least python 3.9
+
 - first clone the master branch:
 
 		git clone https://gitlab.com/erfanara/rtsp_finder --depth 1
