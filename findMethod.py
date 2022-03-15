@@ -37,6 +37,7 @@ error codes:
     111 -> connection refused (maybe port is wrong)
     401 -> auth failed
     -1  -> unknown error, rtsp url not found
+    -2  -> timeout
 """
 
 
@@ -70,7 +71,7 @@ async def rtspFind(ip,
         # TODO : idk why timeout does not work!
         await asyncio.wait_for(task, timeout=20.0)
     except asyncio.TimeoutError:
-        return {"success": False, "Error": "timeout", "rtsp": []}
+        return {"success": False, "Error": -2, "description": "timeout", "rtsp": []}
     return logs.dict_log()
 
 
