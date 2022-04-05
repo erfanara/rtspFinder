@@ -8,13 +8,19 @@ Similar tools:
 - https://github.com/Ullaakut/cameradar
 
 # How to use?
-- you need at least python 3.9
+- **IMPORTANT: you need at least python 3.9, otherwise please use the branch "py3.8".**
 
-- first clone the master branch:
+- clone:
 
 		git clone https://gitlab.com/erfanara/rtsp_finder --depth 1
 
 		cd rtsp_finder
+
+  - if you have python3.8 use the py3.8 branch:
+                
+                git clone --branch py3.8 https://gitlab.com/erfanara/rtsp_finder --depth 1
+        
+		cd rtspFinder
 
 - install the requirements :
 

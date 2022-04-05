@@ -1,5 +1,3 @@
-.pyenv
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -12,6 +10,8 @@ reports/
 .vscode/*
 venv/
 test/
+.pyenv*
+.env*
 
 # Deploy
 build/
