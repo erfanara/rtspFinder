@@ -9,7 +9,7 @@ def digestCalcHA1(alg: str,
                   realm: str,
                   password: str,
                   nonce: str,
-                  cNonce: str) -> str:
+                  cNonce: str):
     concat = username + ":" + realm + ":" + password
     if alg.lower == "md5-sess":
         concat += ":" + nonce + ":" + cNonce
@@ -22,7 +22,7 @@ def digestCalcHA1(alg: str,
 def digestCalcHA2(qop: str,
                   method: str,
                   digestUri: str,
-                  hEntity: str) -> str:
+                  hEntity: str):
     concat = method + ":" + digestUri
     if qop.lower() == "auth-int":
         concat += ":" + hEntity
@@ -40,7 +40,7 @@ def digestCalcResponse(alg: str,
                        qop: str,                         # qop-value: "", "auth", "auth-int"
                        method: str,                      # method from the request
                        digestUri: str,                   # requested URL
-                       hEntity: str) -> str:             # H(entity body) if qop="auth-int"
+                       hEntity: str):             # H(entity body) if qop="auth-int"
     concat = str(digestCalcHA1(alg, username, realm,
                  password, nonce, cNonce)) + ":" + nonce + ":"
     if qop is not None and qop != "":

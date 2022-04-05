@@ -212,9 +212,9 @@ class RTSPClient:
             ip_prefix = ""
         return f"rtsp://{ip_prefix}{ip}:{port}{route}"
 
-    def __str__(self) -> str:
+    def __str__(self):
         x = self.get_rtsp_url(self.ip, self.port, self.credentials, self.path)
         return x
 
-    def __rich__(self) -> str:
+    def __rich__(self):
         return f"[underline cyan]{self.__str__()}[/underline cyan]"

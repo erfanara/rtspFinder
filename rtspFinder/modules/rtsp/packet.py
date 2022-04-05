@@ -10,7 +10,7 @@ def _basic_auth(credentials):
     return f"Authorization: Basic {str(encoded_cred, 'utf-8')}"
 
 
-def _digest_auth(method, url, credentials, realm, nonce) -> str:
+def _digest_auth(method, url, credentials, realm, nonce):
     username, password = credentials.split(":")
     response = digestCalcResponse(
         "md5", username, realm, password, nonce, "", "", "", method, url, "")

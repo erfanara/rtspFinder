@@ -11,19 +11,19 @@ from rtspFinder.modules.screenshot.screenshot_worker import screenshot_worker
 
 
 async def main(
-    ip: str,
-    rtsp_port: int = 554,
-    onvif_port: int = 80,
-    user: str = "",
-    password: str = "",
-    paths: list[str] = [],
-    ss_timeout: float = 7.0,
-    rtsp_worker_maxWorkers: int = 30,
+    ip = "",
+    rtsp_port = 554,
+    onvif_port = 80,
+    user = "",
+    password = "",
+    paths = [],
+    ss_timeout = 7.0,
+    rtsp_worker_maxWorkers = 30,
     ss_maxWorkers=10,
-    stop_all_workers_after_first_success: bool = True,
-    no_onvif: bool = False,
-    only_onvif: bool = False,
-    dont_store: bool = False,
+    stop_all_workers_after_first_success = True,
+    no_onvif = False,
+    only_onvif = False,
+    dont_store = False,
 ):
     queue1 = asyncio.Queue()
     queue2 = asyncio.Queue()

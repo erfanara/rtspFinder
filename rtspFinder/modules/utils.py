@@ -41,7 +41,7 @@ navigator.clipboard.writeText(img.alt);}
 
 
 
-def load_paths(urls_path)-> list[str]:
+def load_paths(urls_path):
     with open(urls_path, "r") as f:
         return [url.strip() for url in f.readlines()[2::]]
 

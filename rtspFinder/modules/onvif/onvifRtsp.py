@@ -40,16 +40,16 @@ header1 = {
 }
 
 
-def findProfileTokens(xmlData: str) -> list[str]:
+def findProfileTokens(xmlData: str):
     return re.findall(r'Profiles .*? token="(.*?)"', xmlData)
 
 
-def findUris(xmlData: str) -> list[str]:
+def findUris(xmlData: str):
     # TODO : regex is true? (Uri ?)
     return re.findall(r'Uri>(rtsp://.*?)<', xmlData)
 
 
-def getRtsp(ip: str, onvif_port: int, user: str, password: str) -> list[str]:
+def getRtsp(ip: str, onvif_port: int, user: str, password: str):
     urls = []
     try:
         # Get Profiles first
